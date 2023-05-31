@@ -1,17 +1,51 @@
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
-public class Main {
-    public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.print("Hello and welcome!");
+import Calculator.Calculator;
+import java.util.Scanner;
 
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+public class Main
+{
+    public static void main(String[] args)
+    {
 
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter first number: ");
+        double num1 = scanner.nextDouble();
+
+        System.out.println("Enter second number: ");
+        double num2 = scanner.nextDouble();
+
+        System.out.println("Enter an operator (+, -, *, /): ");
+        char operator = scanner.next().charAt(0);
+
+        scanner.close();
+        double output;
+        try {
+            switch (operator) {
+                case '+':
+                    output = Calculator.add(num1, num2);
+                    break;
+
+                case '-':
+                    output = Calculator.subtract(num1, num2);
+                    break;
+
+                case '*':
+                    output = Calculator.multiply(num1, num2);
+                    break;
+
+                case '/':
+                    output = Calculator.divide(num1, num2);
+                    break;
+
+                default:
+                    System.out.println("Error! Invalid operator. Please enter correct operator.");
+                    return;
+            }
+            System.out.println(num1 + " " + operator + " " + num2 + ": " + output);
         }
+        catch (IllegalArgumentException error){
+            System.out.println("Error! " + error.getMessage());
+        }
+
     }
 }
